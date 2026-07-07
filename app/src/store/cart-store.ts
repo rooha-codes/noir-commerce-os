@@ -1,10 +1,7 @@
 import { create } from "zustand"
 import { persist } from "zustand/middleware"
-import type { Product } from "@/data/products"
-
-type CartItem = Product & {
-  quantity: number
-}
+import type { Product } from "@/types/product"
+import type { CartItem } from "@/types/cart"
 
 type CartStore = {
   items: CartItem[]

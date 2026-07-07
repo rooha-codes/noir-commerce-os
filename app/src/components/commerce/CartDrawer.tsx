@@ -1,6 +1,6 @@
 import { Minus, Plus, ShoppingBag, X } from "lucide-react"
 import { AnimatePresence, motion } from "framer-motion"
-import { useCartStore } from "@/store/cart-store"
+import { useCart } from "@/features/cart"
 
 export function CartDrawer() {
   const {
@@ -12,7 +12,7 @@ export function CartDrawer() {
     removeItem,
     subtotal,
     clearCart,
-  } = useCartStore()
+  } = useCart()
 
   return (
     <AnimatePresence>

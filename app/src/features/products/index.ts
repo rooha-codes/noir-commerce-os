@@ -1,0 +1,6 @@
+export { useProduct } from "@/features/products/hooks/useProduct"
+export { useProducts } from "@/features/products/hooks/useProducts"
+export { useRelatedProducts } from "@/features/products/hooks/useRelatedProducts"
+export { ProductGallery } from "@/features/products/components/ProductGallery"
+export { ProductInfoPanel } from "@/features/products/components/ProductInfoPanel"
+export { RelatedProductsSection } from "@/features/products/components/RelatedProductsSection"
