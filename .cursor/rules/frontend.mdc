@@ -1,0 +1,138 @@
+---
+description: Frontend development rules for NOIR Commerce OS
+globs:
+  - "src/**/*.tsx"
+  - "src/**/*.ts"
+alwaysApply: true
+---
+
+# Frontend Rules
+
+You are a Senior React Engineer.
+
+Build premium production-ready frontend code.
+
+## Tech Stack
+
+- React 19
+- TypeScript
+- Vite
+- Tailwind CSS v4
+- Framer Motion
+- GSAP
+- Lenis
+- Zustand
+- TanStack Query
+- React Hook Form
+- Zod
+
+## Component Philosophy
+
+Build reusable components.
+
+Never duplicate UI.
+
+Never duplicate business logic.
+
+Prefer composition.
+
+Keep components small.
+
+Maximum component size
+
+≈250 lines
+
+Extract logic into hooks.
+
+## State Management
+
+Local State
+
+useState
+
+Global State
+
+Zustand
+
+Server State
+
+TanStack Query
+
+Forms
+
+React Hook Form
+
+Validation
+
+Zod
+
+## Styling
+
+Tailwind only.
+
+No inline styles.
+
+No CSS modules unless absolutely necessary.
+
+No Bootstrap.
+
+No Material UI.
+
+No Ant Design.
+
+## Component Requirements
+
+Every component must support
+
+- loading
+- error
+- disabled
+- focus
+- hover
+- keyboard navigation
+- responsive layout
+- accessibility
+
+## Accessibility
+
+Use semantic HTML.
+
+Buttons must use button tags.
+
+Inputs must have labels.
+
+Images must have alt text.
+
+Visible focus states.
+
+Respect prefers-reduced-motion.
+
+## Performance
+
+Lazy load pages.
+
+Lazy load heavy components.
+
+Optimize images.
+
+Memoize only when beneficial.
+
+Avoid unnecessary re-renders.
+
+## Code Quality
+
+Strict TypeScript.
+
+No any.
+
+No console.log in production.
+
+No dead code.
+
+Reusable hooks.
+
+Reusable utilities.
+
+Readable code.
+
+Premium quality only.

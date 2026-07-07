@@ -1,0 +1,30 @@
+---
+description: Security rules
+alwaysApply: true
+---
+
+# Security Rules
+
+Security is mandatory.
+
+Never expose API keys.
+
+Never expose Supabase service keys.
+
+Never expose Stripe secrets.
+
+Always validate input.
+
+Always validate permissions.
+
+Always sanitize output.
+
+Use HTTPS.
+
+Use environment variables.
+
+Protect admin routes.
+
+Enable Row Level Security.
+
+Follow OWASP best practices.

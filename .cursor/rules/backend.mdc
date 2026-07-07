@@ -1,0 +1,104 @@
+---
+description: Backend rules for NOIR Commerce OS
+globs:
+  - "supabase/**/*"
+  - "src/services/**/*"
+  - "src/lib/**/*"
+alwaysApply: true
+---
+
+# Backend Rules
+
+Build enterprise backend architecture.
+
+## Database
+
+PostgreSQL
+
+UUID primary keys.
+
+Foreign keys.
+
+Indexes.
+
+Soft delete.
+
+Audit logs.
+
+RLS enabled.
+
+## API
+
+REST.
+
+Consistent JSON.
+
+Validation.
+
+Pagination.
+
+Filtering.
+
+Searching.
+
+Sorting.
+
+Proper status codes.
+
+## Authentication
+
+Supabase Auth.
+
+JWT.
+
+Protected routes.
+
+Role based access.
+
+Refresh tokens.
+
+## Security
+
+Validate every request.
+
+Never trust frontend.
+
+Sanitize inputs.
+
+Escape outputs.
+
+Never expose secrets.
+
+Environment variables only.
+
+## Payments
+
+Stripe.
+
+Webhook verification.
+
+Never trust client payment status.
+
+## Logging
+
+Log critical events.
+
+Authentication.
+
+Payments.
+
+Orders.
+
+Refunds.
+
+Security events.
+
+## Quality
+
+Scalable.
+
+Secure.
+
+Maintainable.
+
+Production ready.

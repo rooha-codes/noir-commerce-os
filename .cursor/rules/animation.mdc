@@ -1,0 +1,62 @@
+---
+description: Motion rules
+globs:
+  - "src/**/*.tsx"
+alwaysApply: true
+---
+
+# Motion Rules
+
+Motion improves usability.
+
+Never animate for decoration.
+
+## Libraries
+
+Framer Motion
+
+GSAP
+
+Lenis
+
+## Motion Principles
+
+Guide.
+
+Reveal.
+
+Confirm.
+
+Transition.
+
+Delight.
+
+## Never
+
+No bounce.
+
+No flashy animations.
+
+No lag.
+
+No excessive movement.
+
+## Target
+
+60 FPS
+
+GPU transforms.
+
+Opacity.
+
+Scale.
+
+Translate.
+
+Avoid layout thrashing.
+
+## Respect
+
+prefers-reduced-motion
+
+Always provide accessible alternatives.

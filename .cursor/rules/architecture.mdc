@@ -1,0 +1,164 @@
+---
+description: Architecture rules for NOIR Commerce OS
+globs:
+  - "src/**/*"
+  - "app/**/*"
+  - "components/**/*"
+  - "features/**/*"
+alwaysApply: true
+---
+
+# Architecture Rules
+
+You are building NOIR Commerce OS, a premium fashion ecommerce platform.
+
+Do not build random pages. Build a scalable product architecture.
+
+## Core Architecture
+
+Use feature-based architecture.
+
+Preferred structure:
+
+src/
+  app/
+  components/
+    ui/
+    layout/
+    commerce/
+    motion/
+  features/
+    auth/
+    products/
+    cart/
+    checkout/
+    wishlist/
+    account/
+    admin/
+    orders/
+    search/
+    reviews/
+  hooks/
+  lib/
+  services/
+  store/
+  types/
+  utils/
+  styles/
+
+## Rules
+
+- Keep business logic inside `features/`.
+- Keep reusable UI inside `components/ui/`.
+- Keep layout components inside `components/layout/`.
+- Keep API/Supabase logic inside `services/` or `lib/`.
+- Keep Zustand stores inside `store/`.
+- Keep shared TypeScript types inside `types/`.
+- Keep helper functions inside `utils/`.
+
+## Non-Negotiables
+
+- No duplicated components.
+- No duplicated business logic.
+- No massive files.
+- No hardcoded repeated data.
+- No random folder creation.
+- No mixing UI, API, and business logic in one file.
+- No placeholder architecture.
+
+## Component Rules
+
+Every reusable component must support:
+
+- loading state
+- error state
+- empty state when relevant
+- disabled state
+- focus state
+- hover state
+- responsive behavior
+- accessibility
+- dark theme
+- clean props
+
+## Naming Rules
+
+Use PascalCase for components.
+
+Example:
+
+ProductCard.tsx
+CartDrawer.tsx
+CheckoutStepper.tsx
+
+Use camelCase for utilities.
+
+Example:
+
+formatCurrency.ts
+calculateSubtotal.ts
+validateCoupon.ts
+
+Use kebab-case only for route paths.
+
+## Import Rules
+
+Prefer absolute imports when configured.
+
+Example:
+
+import { Button } from "@/components/ui/Button"
+
+Avoid deep messy imports.
+
+## Page Rules
+
+Every page must include:
+
+- clear purpose
+- premium layout
+- responsive design
+- loading state
+- error state
+- empty state where relevant
+- SEO metadata when applicable
+- no dead buttons
+- no blank sections
+
+## Data Rules
+
+Do not hardcode production data directly inside components.
+
+Use:
+
+- data files for demo content
+- services for backend data
+- hooks for fetching
+- stores for client state
+
+## Scalability Rules
+
+Build as if the project will support:
+
+- thousands of products
+- thousands of users
+- admin dashboard
+- payments
+- inventory
+- orders
+- analytics
+- future mobile app
+
+## Quality Rule
+
+A feature is not complete when it works.
+
+A feature is complete when it is:
+
+- reusable
+- accessible
+- responsive
+- performant
+- secure
+- maintainable
+- visually premium

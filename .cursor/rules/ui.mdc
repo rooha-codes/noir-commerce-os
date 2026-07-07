@@ -1,0 +1,102 @@
+---
+description: UI design rules
+globs:
+  - "src/**/*.tsx"
+alwaysApply: true
+---
+
+# UI Rules
+
+This project is a luxury fashion brand.
+
+Never build generic ecommerce UI.
+
+## Design Language
+
+Minimal.
+
+Editorial.
+
+Elegant.
+
+Premium.
+
+Architectural.
+
+Timeless.
+
+## Inspiration
+
+Use emotional inspiration from
+
+- Apple
+- COS
+- Aesop
+- Arc Browser
+- OUTFIT
+
+Never copy layouts.
+
+## Layout
+
+Large whitespace.
+
+Strong typography.
+
+Minimal navigation.
+
+Large imagery.
+
+Consistent spacing.
+
+## Cards
+
+Premium.
+
+No clutter.
+
+Soft shadows.
+
+Elegant hover.
+
+Large photography.
+
+## Buttons
+
+Simple.
+
+Elegant.
+
+Minimal.
+
+Clear hierarchy.
+
+## Forms
+
+Large spacing.
+
+Clear labels.
+
+Accessible.
+
+## Dark Theme
+
+Dark-first.
+
+Warm white text.
+
+Neutral grays.
+
+Avoid saturated colors.
+
+## Never
+
+Never use Bootstrap.
+
+Never use Material UI.
+
+Never use default browser styling.
+
+Never create template-looking pages.
+
+Every page should feel portfolio-quality.
