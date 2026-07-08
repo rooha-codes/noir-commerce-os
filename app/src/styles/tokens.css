@@ -1,5 +1,15 @@
 /**
- * Design tokens — extended in a later phase.
+ * DESIGN TOKENS — ENTRY POINT
+ * NOIR Commerce OS — Design System
+ *
+ * Single import for every design token in the system. Import this file
+ * (indirectly, via styles/globals.css) once at the app root — never import
+ * individual token partials directly from components.
  */
 
-export {}
+@import "./colors.css";
+@import "./spacing.css";
+@import "./typography.css";
+@import "./radius.css";
+@import "./shadows.css";
+@import "./animations.css";

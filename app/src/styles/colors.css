@@ -1,0 +1,53 @@
+/**
+ * COLOR TOKENS
+ * NOIR Commerce OS — Design System
+ *
+ * Dark-theme only. These are the single source of truth for every color
+ * used across the app. Values match the approved NOIR visual identity —
+ * nothing here changes what's already on screen, it only names it.
+ *
+ * Each variable below is also registered with Tailwind via `@theme inline`,
+ * which generates real utility classes (bg-background, text-foreground,
+ * border-border, bg-danger, etc.) without touching Tailwind's default
+ * color palette (red-500, gray-900, ...), so nothing existing breaks.
+ */
+
+:root {
+  --color-background: #050505;
+  --color-surface: #0a0a0a;
+  --color-surface-elevated: #111111;
+
+  --color-foreground: #f6f1e8;
+  --color-muted: rgba(246, 241, 232, 0.62);
+  --color-muted-soft: rgba(246, 241, 232, 0.42);
+
+  --color-border: rgba(255, 255, 255, 0.1);
+  --color-border-strong: rgba(255, 255, 255, 0.2);
+
+  --color-primary: #f6f1e8;
+  --color-primary-foreground: #050505;
+
+  --color-danger: #ef4444;
+  --color-success: #22c55e;
+  --color-warning: #f59e0b;
+}
+
+@theme inline {
+  --color-background: var(--color-background);
+  --color-surface: var(--color-surface);
+  --color-surface-elevated: var(--color-surface-elevated);
+
+  --color-foreground: var(--color-foreground);
+  --color-muted: var(--color-muted);
+  --color-muted-soft: var(--color-muted-soft);
+
+  --color-border: var(--color-border);
+  --color-border-strong: var(--color-border-strong);
+
+  --color-primary: var(--color-primary);
+  --color-primary-foreground: var(--color-primary-foreground);
+
+  --color-danger: var(--color-danger);
+  --color-success: var(--color-success);
+  --color-warning: var(--color-warning);
+}

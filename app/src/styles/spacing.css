@@ -1,0 +1,32 @@
+/**
+ * SPACING TOKENS
+ * NOIR Commerce OS — Design System
+ *
+ * IMPORTANT: these are named `--space-*`, deliberately NOT `--spacing-*`.
+ * Tailwind v4 treats `--spacing-<n>` as an override of its numeric spacing
+ * scale (the thing that powers p-4, gap-8, px-5, h-10, etc. across the
+ * existing Navbar, Footer, CartDrawer and ProductCard). Naming these
+ * `--spacing-*` would silently rewrite every existing padding/gap/size
+ * value in the approved UI. `--space-*` avoids that collision entirely.
+ *
+ * Use these for raw CSS, inline arbitrary values (e.g. `p-[var(--space-24)]`),
+ * or JS/TS consumers that need the literal pixel scale. Tailwind's own
+ * numeric utilities (p-4, gap-6, ...) remain untouched and keep working
+ * exactly as they do today.
+ */
+
+:root {
+  --space-4: 4px;
+  --space-8: 8px;
+  --space-12: 12px;
+  --space-16: 16px;
+  --space-20: 20px;
+  --space-24: 24px;
+  --space-32: 32px;
+  --space-40: 40px;
+  --space-48: 48px;
+  --space-64: 64px;
+  --space-80: 80px;
+  --space-96: 96px;
+  --space-128: 128px;
+}

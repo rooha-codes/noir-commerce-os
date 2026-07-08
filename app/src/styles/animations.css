@@ -1,0 +1,41 @@
+/**
+ * MOTION TOKENS
+ * NOIR Commerce OS — Design System
+ *
+ * Duration tokens are kept as plain CSS custom properties (not a Tailwind
+ * `--duration-*` theme key — that namespace isn't part of Tailwind v4's
+ * themable core, so utilities like `duration-150` keep working exactly as
+ * before). Consume these via `duration-[var(--motion-fast)]`, inline
+ * styles, or pass straight into Framer Motion `transition` props from
+ * `constants/theme.ts` (Batch 3).
+ *
+ * `--ease-*` IS a real Tailwind v4 theme namespace, so the two easing
+ * curves below become real utilities (ease-premium, ease-standard) without
+ * overriding Tailwind's built-in ease-in / ease-out / ease-in-out.
+ *
+ * Reduced-motion support is enforced globally here, per the project's
+ * accessibility rules — motion never becomes a requirement to use the site.
+ */
+
+:root {
+  --motion-fast: 150ms;
+  --motion-normal: 250ms;
+  --motion-slow: 450ms;
+  --motion-page: 650ms;
+}
+
+@theme {
+  --ease-premium: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

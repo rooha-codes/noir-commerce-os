@@ -1,0 +1,21 @@
+/**
+ * RADIUS TOKENS
+ * NOIR Commerce OS — Design System
+ *
+ * Overrides Tailwind v4's default radius scale with the NOIR architectural
+ * scale. Confirmed safe: the current codebase only ever uses `rounded-full`
+ * (Navbar cart badge, CartDrawer buttons/pills, ProductCard CTA, hero CTA,
+ * ProductInfoPanel controls) — no component uses rounded-sm/md/lg/xl/2xl
+ * today, so redefining those keys changes nothing currently on screen and
+ * only affects components built from here on.
+ */
+
+@theme {
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-2xl: 32px;
+  --radius-full: 9999px;
+}
