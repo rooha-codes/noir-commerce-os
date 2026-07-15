@@ -2,6 +2,8 @@ import type { ReactNode } from "react"
 import { Navbar } from "@/components/layout/Navbar"
 import { ProductNavbar } from "@/components/layout/ProductNavbar"
 import { Footer } from "@/components/layout/Footer"
+import { SearchOverlay } from "@/features/search/components/SearchOverlay"
+import { MobileMenu } from "@/components/layout/MobileMenu"
 
 type RootLayoutProps = {
   children: ReactNode
@@ -20,6 +22,8 @@ export function RootLayout({
       {navbar === "product" && <ProductNavbar />}
       {children}
       {showFooter && <Footer />}
+      <SearchOverlay />
+      <MobileMenu />
     </main>
   )
 }

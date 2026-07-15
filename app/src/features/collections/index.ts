@@ -1,0 +1,5 @@
+export { useCollections } from "@/features/collections/hooks/useCollections"
+export { CollectionsHero } from "@/features/collections/components/CollectionsHero"
+export { CollectionCard } from "@/features/collections/components/CollectionCard"
+export { COLLECTIONS } from "@/features/collections/data/collections"
+export type { Collection } from "@/features/collections/types"

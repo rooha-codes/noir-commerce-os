@@ -2,6 +2,7 @@ import { Heart, Menu, Search, ShoppingBag } from "lucide-react"
 import { Link, NavLink } from "react-router-dom"
 import { ROUTES } from "@/constants/routes"
 import { useCart } from "@/features/cart/hooks/useCart"
+import { useUIStore } from "@/store/ui-store"
 
 const navLinks = [
   { label: "Shop", href: ROUTES.shop },
@@ -12,6 +13,7 @@ const navLinks = [
 
 export function Navbar() {
   const { count, openCart } = useCart()
+  const { openSearch, openMobileMenu } = useUIStore()
 
   return (
     <nav className="fixed left-0 top-0 z-50 flex w-full items-center justify-between border-b border-white/10 bg-black/30 px-5 py-4 backdrop-blur-xl md:px-10">
@@ -34,7 +36,7 @@ export function Navbar() {
       </div>
 
       <div className="flex items-center gap-4">
-        <button aria-label="Search">
+        <button onClick={openSearch} aria-label="Search">
           <Search size={19} />
         </button>
 
@@ -51,7 +53,7 @@ export function Navbar() {
           )}
         </button>
 
-        <button aria-label="Open menu">
+        <button onClick={openMobileMenu} aria-label="Open menu" className="md:hidden">
           <Menu size={21} />
         </button>
       </div>

@@ -1,43 +1,93 @@
-import { ShoppingBag } from "lucide-react"
 import { RootLayout } from "@/components/layout/RootLayout"
 import { CartDrawer } from "@/components/commerce/CartDrawer"
-import { ProductCard } from "@/components/commerce/ProductCard"
 import { Container } from "@/components/ui/Container"
 import { Section } from "@/components/ui/Section"
-import { EmptyState } from "@/components/ui/EmptyState"
 import { useProducts } from "@/features/products"
+import {
+  useShopFilters,
+  ShopHero,
+  ShopBreadcrumb,
+  ShopToolbar,
+  CategoryPills,
+  FilterSidebar,
+  MobileFilterSheet,
+  ProductGrid,
+} from "@/features/shop"
 
 export function ShopPage() {
-  const products = useProducts()
+  const allProducts = useProducts()
+  const {
+    filters,
+    setSearch,
+    setCategory,
+    setPriceRangeId,
+    setSort,
+    clearFilters,
+    isFiltered,
+    categories,
+    priceRanges,
+    products,
+    resultsCount,
+    totalCount,
+    isMobileFiltersOpen,
+    openMobileFilters,
+    closeMobileFilters,
+  } = useShopFilters(allProducts)
 
   return (
     <RootLayout navbar="home" showFooter>
       <Section spacing="lg" className="pt-32">
         <Container>
-          <div className="mb-10">
-            <p className="mb-3 text-xs uppercase tracking-[0.4em] text-white/40">
-              Full Collection
-            </p>
-            <h1 className="text-4xl font-medium tracking-[-0.05em] md:text-6xl">
-              Shop All
-            </h1>
-          </div>
+          <ShopBreadcrumb />
+          <ShopHero totalCount={totalCount} />
 
-          {products.length === 0 ? (
-            <EmptyState
-              icon={<ShoppingBag size={40} />}
-              title="No products available"
-              description="Check back soon for new arrivals."
+          <CategoryPills
+            categories={categories}
+            active={filters.category}
+            onSelect={setCategory}
+          />
+
+          <ShopToolbar
+            search={filters.search}
+            onSearchChange={setSearch}
+            sort={filters.sort}
+            onSortChange={setSort}
+            resultsCount={resultsCount}
+            totalCount={totalCount}
+            onOpenMobileFilters={openMobileFilters}
+          />
+
+          <div className="flex gap-10">
+            <FilterSidebar
+              categories={categories}
+              activeCategory={filters.category}
+              onSelectCategory={setCategory}
+              priceRanges={priceRanges}
+              selectedPriceRangeId={filters.priceRangeId}
+              onSelectPriceRange={setPriceRangeId}
+              isFiltered={isFiltered}
+              onClearFilters={clearFilters}
             />
-          ) : (
-            <div className="grid gap-5 md:grid-cols-4">
-              {products.map((product, index) => (
-                <ProductCard key={product.id} product={product} index={index} />
-              ))}
+
+            <div className="min-w-0 flex-1">
+              <ProductGrid products={products} onClearFilters={clearFilters} />
             </div>
-          )}
+          </div>
         </Container>
       </Section>
+
+      <MobileFilterSheet
+        isOpen={isMobileFiltersOpen}
+        onClose={closeMobileFilters}
+        categories={categories}
+        activeCategory={filters.category}
+        onSelectCategory={setCategory}
+        priceRanges={priceRanges}
+        selectedPriceRangeId={filters.priceRangeId}
+        onSelectPriceRange={setPriceRangeId}
+        resultsCount={resultsCount}
+        onClearFilters={clearFilters}
+      />
 
       <CartDrawer />
     </RootLayout>

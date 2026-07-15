@@ -1,0 +1,5 @@
+export { AboutHero } from "@/features/about/components/AboutHero"
+export { AboutSection } from "@/features/about/components/AboutSection"
+export { AboutCTA } from "@/features/about/components/AboutCTA"
+export { ABOUT_HERO, ABOUT_SECTIONS, ABOUT_CTA } from "@/features/about/data/aboutContent"
+export type { AboutHeroContent, AboutSectionContent, AboutCTAContent } from "@/features/about/types"
