@@ -5,5 +5,6 @@ export const ROUTES = {
   about: "/about",
   journal: "/journal",
   cart: "/cart",
+  wishlist: "/wishlist",
   product: (slug: string) => `/product/${slug}`,
 } as const

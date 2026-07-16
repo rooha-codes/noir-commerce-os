@@ -1,5 +1,5 @@
-/**
- * Reviews feature — implemented in a later phase.
- */
-
-export {}
+export { ProductReviews } from "./components/ProductReviews"
+export { ReviewCard } from "./components/ReviewCard"
+export { RatingSummary } from "./components/RatingSummary"
+export { StarRating } from "./components/StarRating"
+export type { Review } from "./types"

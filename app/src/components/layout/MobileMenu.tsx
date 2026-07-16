@@ -1,10 +1,11 @@
 import { useEffect } from "react"
 import { AnimatePresence, motion } from "framer-motion"
 import { Link, useLocation } from "react-router-dom"
-import { X, ShoppingBag } from "lucide-react"
+import { X, ShoppingBag, Heart } from "lucide-react"
 import { ROUTES } from "@/constants/routes"
 import { useUIStore } from "@/store/ui-store"
 import { useCart } from "@/features/cart/hooks/useCart"
+import { useWishlist } from "@/features/wishlist"
 import { cn } from "@/utils/cn"
 
 const menuLinks = [
@@ -14,11 +15,13 @@ const menuLinks = [
   { label: "Journal", href: ROUTES.journal },
   { label: "About", href: ROUTES.about },
   { label: "Cart", href: ROUTES.cart },
+  { label: "Wishlist", href: "/wishlist" },
 ] as const
 
 export function MobileMenu() {
   const { isMobileMenuOpen, closeMobileMenu } = useUIStore()
-  const { count, openCart } = useCart()
+  const { count: cartCount, openCart } = useCart()
+  const { count: wishlistCount } = useWishlist()
   const location = useLocation()
 
   useEffect(() => {
@@ -61,7 +64,7 @@ export function MobileMenu() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-[80] bg-black/80 backdrop-blur-sm md:hidden"
+            className="fixed inset-0 z-80 bg-black/80 backdrop-blur-sm md:hidden"
           />
 
           <motion.aside
@@ -69,7 +72,7 @@ export function MobileMenu() {
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ duration: 0.35, ease: "easeOut" }}
-            className="fixed right-0 top-0 z-[90] flex h-screen w-full max-w-[420px] flex-col border-l border-white/10 bg-[#080808] text-white shadow-2xl md:hidden"
+            className="fixed right-0 top-0 z-90 flex h-screen w-full max-w-105 flex-col border-l border-white/10 bg-[#080808] text-white shadow-2xl md:hidden"
           >
             <div className="flex items-center justify-between border-b border-white/10 px-6 py-5">
               <span className="text-xl font-semibold tracking-tight">
@@ -77,6 +80,20 @@ export function MobileMenu() {
               </span>
 
               <div className="flex items-center gap-3">
+                <Link
+                  to="/wishlist"
+                  onClick={closeMobileMenu}
+                  aria-label="Wishlist"
+                  className="relative grid h-10 w-10 place-items-center rounded-full border border-white/10 transition hover:bg-white hover:text-black"
+                >
+                  <Heart size={18} />
+                  {wishlistCount() > 0 && (
+                    <span className="absolute -right-1 -top-1 grid h-4 w-4 place-items-center rounded-full bg-white text-[9px] font-bold text-black">
+                      {wishlistCount()}
+                    </span>
+                  )}
+                </Link>
+
                 <button
                   onClick={() => {
                     closeMobileMenu()
@@ -86,9 +103,9 @@ export function MobileMenu() {
                   className="relative grid h-10 w-10 place-items-center rounded-full border border-white/10 transition hover:bg-white hover:text-black"
                 >
                   <ShoppingBag size={18} />
-                  {count() > 0 && (
+                  {cartCount() > 0 && (
                     <span className="absolute -right-1 -top-1 grid h-4 w-4 place-items-center rounded-full bg-white text-[9px] font-bold text-black">
-                      {count()}
+                      {cartCount()}
                     </span>
                   )}
                 </button>

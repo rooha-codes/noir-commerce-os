@@ -2,6 +2,7 @@ import { Heart, Menu, Search, ShoppingBag } from "lucide-react"
 import { Link, NavLink } from "react-router-dom"
 import { ROUTES } from "@/constants/routes"
 import { useCart } from "@/features/cart/hooks/useCart"
+import { useWishlist } from "@/features/wishlist"
 import { useUIStore } from "@/store/ui-store"
 
 const navLinks = [
@@ -12,7 +13,8 @@ const navLinks = [
 ] as const
 
 export function Navbar() {
-  const { count, openCart } = useCart()
+  const { count: cartCount, openCart } = useCart()
+  const { count: wishlistCount } = useWishlist()
   const { openSearch, openMobileMenu } = useUIStore()
 
   return (
@@ -40,15 +42,24 @@ export function Navbar() {
           <Search size={19} />
         </button>
 
-        <button aria-label="Wishlist">
+        <Link
+          to={ROUTES.wishlist ?? "/wishlist"}
+          aria-label="Wishlist"
+          className="relative"
+        >
           <Heart size={19} />
-        </button>
+          {wishlistCount() > 0 && (
+            <span className="absolute -right-2 -top-2 grid h-4 w-4 place-items-center rounded-full bg-white text-[10px] font-bold text-black">
+              {wishlistCount()}
+            </span>
+          )}
+        </Link>
 
         <button onClick={openCart} aria-label="Open cart" className="relative">
           <ShoppingBag size={19} />
-          {count() > 0 && (
+          {cartCount() > 0 && (
             <span className="absolute -right-2 -top-2 grid h-4 w-4 place-items-center rounded-full bg-white text-[10px] font-bold text-black">
-              {count()}
+              {cartCount()}
             </span>
           )}
         </button>

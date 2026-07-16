@@ -1,39 +1,75 @@
-import { Link, useParams } from "react-router-dom"
+import { useEffect } from "react"
+import { useNavigate } from "react-router-dom"
 import { RootLayout } from "@/components/layout/RootLayout"
+import { Container } from "@/components/ui/Container"
+import { Section } from "@/components/ui/Section"
 import { CartDrawer } from "@/components/commerce/CartDrawer"
-import {
-  useProduct,
-  ProductGallery,
-  ProductInfoPanel,
-  RelatedProductsSection,
-} from "@/features/products"
+import { useCart } from "@/features/cart"
+import { useProductBySlug } from "@/features/products/hooks/useProductBySlug"
+import { ProductGallery } from "@/features/products/components/ProductGallery"
+import { ProductInfo } from "@/features/products/components/ProductInfo"
+import { RelatedProducts } from "@/features/products/components/RelatedProducts"
+import { ProductReviews } from "@/features/reviews/components/ProductReviews"
+import { RecentlyViewed } from "@/features/products/components/RecentlyViewed"
+import { products } from "@/data/products"
+import { ROUTES } from "@/constants/routes"
 
 export function ProductPage() {
-  const { slug } = useParams()
-  const product = useProduct(slug ?? "")
+  const product = useProductBySlug()
+  const { addItem } = useCart()
+  const navigate = useNavigate()
 
-  if (!product) {
-    return (
-      <main className="grid min-h-screen place-items-center bg-[#050505] px-5 text-[#f6f1e8]">
-        <div className="text-center">
-          <h1 className="mb-4 text-4xl">Product not found.</h1>
-          <Link className="text-white/50 underline" to="/">
-            Back to shop
-          </Link>
-        </div>
-      </main>
-    )
+  useEffect(() => {
+    if (!product) {
+      navigate(ROUTES.shop, { replace: true })
+    }
+  }, [product, navigate])
+
+  if (!product) return null
+
+  const handleAddToCart = () => {
+    addItem(product)
   }
+
+  const galleryImages =
+    product.gallery.length > 0 ? product.gallery : [product.image]
 
   return (
     <RootLayout navbar="product">
-      <section className="grid gap-10 px-5 pb-24 pt-28 md:grid-cols-[1.1fr_0.9fr] md:px-10">
-        <ProductGallery product={product} />
-        <ProductInfoPanel product={product} />
-      </section>
+      <Section spacing="lg" className="pt-28 md:pt-32">
+        <Container>
+          <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-16">
+            <ProductGallery
+              images={galleryImages}
+              productName={product.name}
+            />
 
-      <RelatedProductsSection productId={product.id} />
+            <ProductInfo
+              product={product}
+              onAddToCart={handleAddToCart}
+            />
+          </div>
+
+          <div className="mt-20">
+            <RelatedProducts
+              currentProduct={product}
+              allProducts={products}
+            />
+          </div>
+
+          <div className="mt-20">
+            <ProductReviews productId={product.id} />
+          </div>
+
+          <div className="mt-20">
+            <RecentlyViewed excludeId={product.id} />
+          </div>
+        </Container>
+      </Section>
+
       <CartDrawer />
     </RootLayout>
   )
 }
+
+export default ProductPage
