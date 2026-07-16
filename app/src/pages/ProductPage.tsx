@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { useEffect, lazy, Suspense } from "react"
 import { useNavigate } from "react-router-dom"
 import { RootLayout } from "@/components/layout/RootLayout"
 import { Container } from "@/components/ui/Container"
@@ -9,10 +9,37 @@ import { useProductBySlug } from "@/features/products/hooks/useProductBySlug"
 import { ProductGallery } from "@/features/products/components/ProductGallery"
 import { ProductInfo } from "@/features/products/components/ProductInfo"
 import { RelatedProducts } from "@/features/products/components/RelatedProducts"
-import { ProductReviews } from "@/features/reviews/components/ProductReviews"
-import { RecentlyViewed } from "@/features/products/components/RecentlyViewed"
 import { products } from "@/data/products"
 import { ROUTES } from "@/constants/routes"
+
+const ProductReviews = lazy(() =>
+  import("@/features/reviews/components/ProductReviews").then((m) => ({
+    default: m.ProductReviews,
+  })),
+)
+
+const RecentlyViewed = lazy(() =>
+  import("@/features/products/components/RecentlyViewed").then((m) => ({
+    default: m.RecentlyViewed,
+  })),
+)
+
+function SectionLoader() {
+  return (
+    <div className="border-t border-white/10 pt-16">
+      <div className="mb-10 h-8 w-48 animate-pulse rounded bg-white/4" />
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {Array.from({ length: 4 }).map((_, i) => (
+          <div key={i} className="flex flex-col gap-3">
+            <div className="aspect-3/4 animate-pulse rounded bg-white/4" />
+            <div className="h-4 w-24 animate-pulse rounded bg-white/4" />
+            <div className="h-4 w-32 animate-pulse rounded bg-white/4" />
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
 
 export function ProductPage() {
   const product = useProductBySlug()
@@ -38,7 +65,20 @@ export function ProductPage() {
     <RootLayout navbar="product">
       <Section spacing="lg" className="pt-28 md:pt-32">
         <Container>
-          <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-16">
+          <div
+            className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-16"
+            itemScope
+            itemType="https://schema.org/Product"
+          >
+            <meta itemProp="name" content={product.name} />
+            <meta itemProp="description" content={product.description} />
+            <meta itemProp="brand" content="NOIR" />
+            <div itemProp="offers" itemScope itemType="https://schema.org/Offer">
+              <meta itemProp="price" content={String(product.price)} />
+              <meta itemProp="priceCurrency" content="USD" />
+              <meta itemProp="availability" content="https://schema.org/InStock" />
+            </div>
+
             <ProductGallery
               images={galleryImages}
               productName={product.name}
@@ -50,19 +90,23 @@ export function ProductPage() {
             />
           </div>
 
-          <div className="mt-20">
+          <div className="mt-16 md:mt-20">
             <RelatedProducts
               currentProduct={product}
               allProducts={products}
             />
           </div>
 
-          <div className="mt-20">
-            <ProductReviews productId={product.id} />
+          <div className="mt-16 md:mt-20">
+            <Suspense fallback={<SectionLoader />}>
+              <ProductReviews productId={product.id} />
+            </Suspense>
           </div>
 
-          <div className="mt-20">
-            <RecentlyViewed excludeId={product.id} />
+          <div className="mt-16 md:mt-20">
+            <Suspense fallback={<SectionLoader />}>
+              <RecentlyViewed excludeId={product.id} />
+            </Suspense>
           </div>
         </Container>
       </Section>

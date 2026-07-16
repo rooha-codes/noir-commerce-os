@@ -2,7 +2,6 @@ import { Heart, Menu, Search, ShoppingBag } from "lucide-react"
 import { Link, NavLink } from "react-router-dom"
 import { ROUTES } from "@/constants/routes"
 import { useCart } from "@/features/cart/hooks/useCart"
-import { useWishlist } from "@/features/wishlist"
 import { useUIStore } from "@/store/ui-store"
 
 const navLinks = [
@@ -13,13 +12,18 @@ const navLinks = [
 ] as const
 
 export function Navbar() {
-  const { count: cartCount, openCart } = useCart()
-  const { count: wishlistCount } = useWishlist()
+  const { count, openCart } = useCart()
   const { openSearch, openMobileMenu } = useUIStore()
 
   return (
-    <nav className="fixed left-0 top-0 z-50 flex w-full items-center justify-between border-b border-white/10 bg-black/30 px-5 py-4 backdrop-blur-xl md:px-10">
-      <Link className="text-xl font-semibold tracking-tight" to={ROUTES.home}>
+    <nav
+      className="fixed left-0 top-0 z-50 flex w-full items-center justify-between border-b border-white/10 bg-black/30 px-5 py-4 backdrop-blur-xl md:px-10"
+      aria-label="Main navigation"
+    >
+      <Link
+        className="text-xl font-semibold tracking-tight transition-opacity hover:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/20"
+        to={ROUTES.home}
+      >
         NOIR®
       </Link>
 
@@ -29,7 +33,10 @@ export function Navbar() {
             key={link.href}
             to={link.href}
             className={({ isActive }) =>
-              isActive ? "text-white" : "transition hover:text-white"
+              cn(
+                "transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/20",
+                isActive ? "text-white" : "",
+              )
             }
           >
             {link.label}
@@ -38,38 +45,48 @@ export function Navbar() {
       </div>
 
       <div className="flex items-center gap-4">
-        <button onClick={openSearch} aria-label="Search">
+        <button
+          onClick={openSearch}
+          aria-label="Search"
+          className="transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/20"
+        >
           <Search size={19} />
         </button>
 
-        <Link
-          to={ROUTES.wishlist ?? "/wishlist"}
+        <button
           aria-label="Wishlist"
-          className="relative"
+          className="transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/20"
         >
           <Heart size={19} />
-          {wishlistCount() > 0 && (
-            <span className="absolute -right-2 -top-2 grid h-4 w-4 place-items-center rounded-full bg-white text-[10px] font-bold text-black">
-              {wishlistCount()}
-            </span>
-          )}
-        </Link>
+        </button>
 
-        <button onClick={openCart} aria-label="Open cart" className="relative">
+        <button
+          onClick={openCart}
+          aria-label="Open cart"
+          className="relative transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/20"
+        >
           <ShoppingBag size={19} />
-          {cartCount() > 0 && (
+          {count() > 0 && (
             <span className="absolute -right-2 -top-2 grid h-4 w-4 place-items-center rounded-full bg-white text-[10px] font-bold text-black">
-              {cartCount()}
+              {count()}
             </span>
           )}
         </button>
 
-        <button onClick={openMobileMenu} aria-label="Open menu" className="md:hidden">
+        <button
+          onClick={openMobileMenu}
+          aria-label="Open menu"
+          className="transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/20 md:hidden"
+        >
           <Menu size={21} />
         </button>
       </div>
     </nav>
   )
+}
+
+function cn(...classes: (string | false | undefined)[]) {
+  return classes.filter(Boolean).join(" ")
 }
 
 export default Navbar

@@ -1,3 +1,6 @@
 {
-  "cSpell.words": ["ecommerce"]
+  "editor.formatOnSave": true,
+  "cSpell.words": [
+    "nums"
+  ]
 }

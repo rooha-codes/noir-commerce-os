@@ -1,5 +1,8 @@
+import { useState } from "react"
 import { Link } from "react-router-dom"
 import { ROUTES } from "@/constants/routes"
+import { cn } from "@/utils/cn"
+import { ImageSkeleton } from "@/components/ui/ImageSkeleton"
 import type { Product } from "@/types/product"
 
 type SearchResultItemProps = {
@@ -8,17 +11,25 @@ type SearchResultItemProps = {
 }
 
 export function SearchResultItem({ product, onSelect }: SearchResultItemProps) {
+  const [imageLoaded, setImageLoaded] = useState(false)
+
   return (
     <Link
       to={ROUTES.product(product.slug)}
       onClick={onSelect}
+      role="listitem"
       className="group flex items-center gap-4 rounded-sm p-3 transition-colors hover:bg-white/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/20"
     >
-      <div className="h-20 w-16 shrink-0 overflow-hidden bg-white/5">
+      <div className="relative h-20 w-16 shrink-0 overflow-hidden bg-white/5">
+        {!imageLoaded && <ImageSkeleton className="absolute inset-0" aspectRatio="aspect-[3/4]" />}
         <img
           src={product.image}
           alt={product.name}
-          className="h-full w-full object-cover transition-transform duration-normal group-hover:scale-[1.03]"
+          onLoad={() => setImageLoaded(true)}
+          className={cn(
+            "h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]",
+            imageLoaded ? "opacity-100" : "opacity-0",
+          )}
         />
       </div>
 

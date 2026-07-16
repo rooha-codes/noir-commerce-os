@@ -11,11 +11,28 @@ type EmptyStateProps = {
 
 export function EmptyState({ icon, title, description, action, className }: EmptyStateProps) {
   return (
-    <div className={cn("flex flex-col items-center justify-center px-6 py-16 text-center", className)}>
-      {icon && <div className="mb-5 text-muted-soft">{icon}</div>}
-      <h3 className="text-heading-sm text-foreground">{title}</h3>
-      {description && <p className="mt-3 max-w-sm text-body-sm text-muted">{description}</p>}
-      {action && <div className="mt-6">{action}</div>}
+    <div
+      className={cn(
+        "flex flex-col items-center justify-center px-6 py-20 text-center md:py-28",
+        className,
+      )}
+      role="status"
+      aria-live="polite"
+    >
+      {icon && (
+        <div className="mb-6 text-white/20" aria-hidden="true">
+          {icon}
+        </div>
+      )}
+      <h2 className="text-xl font-medium tracking-[-0.02em] text-white/90 md:text-2xl">
+        {title}
+      </h2>
+      {description && (
+        <p className="mt-3 max-w-sm text-sm leading-relaxed text-white/45">
+          {description}
+        </p>
+      )}
+      {action && <div className="mt-8">{action}</div>}
     </div>
   )
 }
