@@ -6,5 +6,11 @@ export const ROUTES = {
   journal: "/journal",
   cart: "/cart",
   wishlist: "/wishlist",
+
+  login: "/login",
+  signup: "/signup",
+  forgotPassword: "/forgot-password",
+  resetPassword: "/reset-password",
+
   product: (slug: string) => `/product/${slug}`,
 } as const
