@@ -1,12 +1,11 @@
+import { useForm, useWatch } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Link } from "react-router-dom"
-import { useForm, useWatch } from "react-hook-form"
-
 import { Button } from "@/components/ui/Button"
-import { ROUTES } from "@/constants/routes"
+import { PasswordField } from "./PasswordField"
 import { resetPasswordSchema } from "../schemas/resetPasswordSchema"
 import type { ResetPasswordSchema } from "../schemas/resetPasswordSchema"
-import { PasswordField } from "./PasswordField"
+import { ROUTES } from "@/constants/routes"
 
 type ResetPasswordFormProps = {
   onSubmit: (data: ResetPasswordSchema) => Promise<void>
@@ -15,39 +14,25 @@ type ResetPasswordFormProps = {
 
 export function ResetPasswordForm({
   onSubmit,
-  isSubmitting: externalIsSubmitting = false,
+  isSubmitting = false,
 }: ResetPasswordFormProps) {
   const {
     register,
     handleSubmit,
     control,
-    formState: {
-      errors,
-      isSubmitting: formIsSubmitting,
-    },
+    formState: { errors },
   } = useForm<ResetPasswordSchema>({
     resolver: zodResolver(resetPasswordSchema),
     mode: "onBlur",
-    defaultValues: {
-      password: "",
-      confirmPassword: "",
-    },
   })
 
   const passwordValue = useWatch({
-    control,
-    name: "password",
-    defaultValue: "",
-  })
-
-  const isSubmitting = externalIsSubmitting || formIsSubmitting
+  control,
+  name: "password",
+})
 
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className="flex flex-col gap-5"
-      noValidate
-    >
+    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5">
       <PasswordField
         {...register("password")}
         label="New Password"
@@ -55,9 +40,9 @@ export function ResetPasswordForm({
         autoComplete="new-password"
         error={errors.password?.message}
         helperText={
-          passwordValue.length > 0
+          passwordValue && passwordValue.length > 0
             ? undefined
-            : "Min 8 chars, uppercase, lowercase, number, special character"
+            : "Min 8 chars, uppercase, lowercase, number, special char"
         }
         fullWidth
         disabled={isSubmitting}
@@ -87,7 +72,7 @@ export function ResetPasswordForm({
       <p className="text-center text-body-sm text-muted">
         Back to{" "}
         <Link
-          to={ROUTES.login}
+          to={ROUTES.LOGIN}
           className="text-foreground underline underline-offset-4 transition-colors duration-normal hover:text-primary"
         >
           Sign in

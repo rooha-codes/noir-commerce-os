@@ -57,7 +57,7 @@ export function LoginForm({ onSubmit, isSubmitting = false }: LoginFormProps) {
         </label>
 
         <Link
-          to={ROUTES.forgotPassword}
+          to={ROUTES.FORGOT_PASSWORD}
           className="text-body-sm text-muted transition-colors duration-normal hover:text-foreground"
         >
           Forgot password?
@@ -78,7 +78,7 @@ export function LoginForm({ onSubmit, isSubmitting = false }: LoginFormProps) {
       <p className="text-center text-body-sm text-muted">
         Don&apos;t have an account?{" "}
         <Link
-          to={ROUTES.signup}
+          to={ROUTES.SIGNUP}
           className="text-foreground underline underline-offset-4 transition-colors duration-normal hover:text-primary"
         >
           Sign up

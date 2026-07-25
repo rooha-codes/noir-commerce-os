@@ -28,7 +28,7 @@ export function AuthLayout({
       >
         <div className="mb-8 text-center">
           <Link
-            to={ROUTES.home}
+            to={ROUTES.HOME}
             className="mb-6 inline-block text-label uppercase tracking-widest text-foreground transition-opacity duration-normal hover:opacity-70"
           >
             NOIR

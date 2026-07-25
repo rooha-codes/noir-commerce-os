@@ -1,5 +1,8 @@
-/**
- * Orders feature — implemented in a later phase.
- */
+export { useOrderStore } from "@/features/orders/store/order-store"
 
-export {}
+export type {
+  CreateOrderInput,
+  Order,
+  OrderShippingAddress,
+  OrderStatus,
+} from "@/features/orders/types"

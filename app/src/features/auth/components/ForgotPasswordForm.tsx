@@ -52,7 +52,7 @@ export function ForgotPasswordForm({
       <p className="text-center text-body-sm text-muted">
         Remember your password?{" "}
         <Link
-          to={ROUTES.login}
+          to={ROUTES.LOGIN}
           className="text-foreground underline underline-offset-4 transition-colors duration-normal hover:text-primary"
         >
           Sign in

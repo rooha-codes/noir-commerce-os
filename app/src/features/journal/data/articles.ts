@@ -1,9 +1,7 @@
 import type { JournalArticle } from "@/features/journal/types"
 
 /**
- * Static editorial content — no CMS, no backend. Images are reused from
- * the existing, already-verified product imagery elsewhere in the app
- * (see `data/products.ts`), one unique image per article.
+ * Static editorial journal content.
  */
 export const JOURNAL_ARTICLES: JournalArticle[] = [
   {
@@ -36,9 +34,9 @@ export const JOURNAL_ARTICLES: JournalArticle[] = [
     category: "Studio",
     title: "A Smaller Collection, On Purpose",
     excerpt:
-      "We release fewer pieces than most studios our size. Every addition to the collection has to earn a place next to what already exists, or it doesn't ship.",
+      "We release fewer pieces than most studios our size. Every addition to the collection has to earn a place next to what already exists, or it does not ship.",
     image:
-      "https://images.unsplash.com/photo-1506629905607-d9d297d2c4cf?q=80&w=1400&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1523398002811-999ca8dec234?q=80&w=1400&auto=format&fit=crop",
     author: "The NOIR Studio",
     date: "January 2026",
     readingTimeMinutes: 4,
@@ -60,7 +58,7 @@ export const JOURNAL_ARTICLES: JournalArticle[] = [
     category: "Material",
     title: "The Case For Fewer, Heavier Fabrics",
     excerpt:
-      "We'd rather stock three fabrics we trust for a decade than thirty we're unsure of. Weight and density are the first specs we set, before color ever enters the conversation.",
+      "We would rather stock three fabrics we trust for a decade than thirty we are unsure of. Weight and density are the first specifications we set, before color ever enters the conversation.",
     image:
       "https://images.unsplash.com/photo-1523398002811-999ca8dec234?q=80&w=1400&auto=format&fit=crop",
     author: "The NOIR Studio",
@@ -72,7 +70,7 @@ export const JOURNAL_ARTICLES: JournalArticle[] = [
     category: "Process",
     title: "What Eleven Fittings Actually Change",
     excerpt:
-      "A trouser's break and rise look like small details until you've sat, walked, and stood in eleven versions of the same pair. Most of what changes between fittings is invisible until it isn't.",
+      "A trouser's break and rise look like small details until you have sat, walked, and stood in eleven versions of the same pair. Most of what changes between fittings is invisible until it is not.",
     image:
       "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?q=80&w=1400&auto=format&fit=crop",
     author: "Studio Journal Team",

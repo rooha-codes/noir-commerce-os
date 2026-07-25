@@ -1,55 +1,36 @@
+import { useForm, useWatch } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Link } from "react-router-dom"
-import { useForm, useWatch } from "react-hook-form"
-
 import { Button } from "@/components/ui/Button"
 import { Input } from "@/components/ui/Input"
-import { ROUTES } from "@/constants/routes"
+import { PasswordField } from "./PasswordField"
 import { signupSchema } from "../schemas/signupSchema"
 import type { SignupSchema } from "../schemas/signupSchema"
-import { PasswordField } from "./PasswordField"
+import { ROUTES } from "@/constants/routes"
 
 type SignupFormProps = {
   onSubmit: (data: SignupSchema) => Promise<void>
   isSubmitting?: boolean
 }
 
-export function SignupForm({
-  onSubmit,
-  isSubmitting: externalIsSubmitting = false,
-}: SignupFormProps) {
+export function SignupForm({ onSubmit, isSubmitting = false }: SignupFormProps) {
   const {
-    register,
-    handleSubmit,
-    control,
-    formState: {
-      errors,
-      isSubmitting: formIsSubmitting,
-    },
-  } = useForm<SignupSchema>({
+  register,
+  handleSubmit,
+  control,
+  formState: { errors },
+} = useForm<SignupSchema>({
     resolver: zodResolver(signupSchema),
-    defaultValues: {
-      email: "",
-      password: "",
-      confirmPassword: "",
-      acceptTerms: false,
-    },
+    mode: "onBlur",
   })
 
   const passwordValue = useWatch({
-    control,
-    name: "password",
-    defaultValue: "",
-  })
-
-  const isSubmitting = externalIsSubmitting || formIsSubmitting
+  control,
+  name: "password",
+})
 
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className="flex flex-col gap-5"
-      noValidate
-    >
+    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5">
       <Input
         {...register("email")}
         type="email"
@@ -68,9 +49,9 @@ export function SignupForm({
         autoComplete="new-password"
         error={errors.password?.message}
         helperText={
-          passwordValue.length > 0
+          passwordValue && passwordValue.length > 0
             ? undefined
-            : "Min 8 chars, uppercase, lowercase, number, special character"
+            : "Min 8 chars, uppercase, lowercase, number, special char"
         }
         fullWidth
         disabled={isSubmitting}
@@ -90,14 +71,11 @@ export function SignupForm({
         <div className="relative flex h-5 w-5 shrink-0 items-center justify-center">
           <input
             {...register("acceptTerms")}
-            id="accept-terms"
             type="checkbox"
             disabled={isSubmitting}
             className="peer absolute inset-0 h-5 w-5 cursor-pointer appearance-none rounded-xs border border-border bg-surface transition-colors duration-normal ease-standard checked:border-primary checked:bg-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground/30 focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-40"
           />
-
           <svg
-            aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg"
             width="13"
             height="13"
@@ -113,33 +91,29 @@ export function SignupForm({
           </svg>
         </div>
 
-        <div>
-          <label
-            htmlFor="accept-terms"
-            className="cursor-pointer select-none text-body-sm text-foreground"
-          >
+        <label className="cursor-pointer select-none">
+          <span className="text-body-sm text-foreground">
             I agree to the{" "}
             <Link
-              to={ROUTES.home}
+              to={ROUTES.HOME}
               className="underline underline-offset-4 transition-colors duration-normal hover:text-primary"
             >
               Terms of Service
             </Link>{" "}
             and{" "}
             <Link
-              to={ROUTES.home}
+              to={ROUTES.HOME}
               className="underline underline-offset-4 transition-colors duration-normal hover:text-primary"
             >
               Privacy Policy
             </Link>
-          </label>
-
+          </span>
           {errors.acceptTerms && (
-            <p className="mt-1 text-body-sm text-danger">
+            <p className="mt-0.5 text-body-sm text-danger">
               {errors.acceptTerms.message}
             </p>
           )}
-        </div>
+        </label>
       </div>
 
       <Button
@@ -156,7 +130,7 @@ export function SignupForm({
       <p className="text-center text-body-sm text-muted">
         Already have an account?{" "}
         <Link
-          to={ROUTES.login}
+          to={ROUTES.LOGIN}
           className="text-foreground underline underline-offset-4 transition-colors duration-normal hover:text-primary"
         >
           Sign in

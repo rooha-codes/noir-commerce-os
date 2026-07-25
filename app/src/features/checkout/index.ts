@@ -1,5 +1,10 @@
-/**
- * Checkout feature — implemented in a later phase.
- */
+export { CheckoutForm } from "./components/CheckoutForm"
+export { OrderSummary } from "./components/OrderSummary"
+export { CheckoutReview } from "./components/CheckoutReview"
+export { useCheckoutStore } from "./store/checkoutStore"
+export { checkoutSchema } from "./schemas/checkoutSchema"
+export { getShippingPrice, DELIVERY_OPTIONS } from "./utils/shipping"
 
-export {}
+export type { CheckoutSchema } from "./schemas/checkoutSchema"
+export type { DeliveryMethod } from "./utils/shipping"
+export type { CheckoutStep } from "./store/checkoutStore"

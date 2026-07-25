@@ -1,157 +1,197 @@
-# NOIR Commerce OS
+# 🖤 NOIR Commerce
 
-> Enterprise AI First Premium Fashion Ecommerce Platform
+A premium fashion e-commerce application built with **React**, **TypeScript**, **Vite**, and **Supabase**. NOIR Commerce delivers a modern shopping experience with an editorial-inspired interface, responsive design, smooth animations, and a complete customer shopping workflow.
 
-![Status](https://img.shields.io/badge/Status-Planning-black)
-![Version](https://img.shields.io/badge/Version-1.0-white)
-![License](https://img.shields.io/badge/License-MIT-blue)
-
----
-
-## Vision
-
-NOIR Commerce OS is a complete blueprint for building a premium fashion ecommerce platform using AI-assisted development.
-
-This repository is not just a website.
-
-It is a complete operating system for building scalable luxury ecommerce experiences using modern technologies and AI coding tools.
+![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-8-646CFF?logo=vite&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/TailwindCSS-4-38BDF8?logo=tailwindcss&logoColor=white)
+![Supabase](https://img.shields.io/badge/Supabase-Backend-3ECF8E?logo=supabase&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-green)
 
 ---
 
-## Goals
+## 📸 Preview
 
-- Premium Editorial UI
-- Luxury User Experience
-- Enterprise Architecture
-- AI First Development
-- Production Ready
-- Scalable Backend
-- Beautiful Motion Design
-- Security First
-- Accessibility First
-- SEO Optimized
+> Add screenshots after deployment.
+
+| Home | Shop | Product |
+|------|------|---------|
+| Screenshot | Screenshot | Screenshot |
 
 ---
 
-# Tech Stack
+# ✨ Features
 
-Frontend
+- Premium editorial homepage
+- Responsive design
+- Product catalog
+- Product details
+- Collections
+- Journal
+- About page
+- Wishlist
+- Shopping cart
+- Checkout flow
+- Order success page
+- Order history
+- Account dashboard
+- Authentication
+- Search
+- Product filtering
+- Responsive navigation
+- Lazy loading
+- Code splitting
+- SEO optimization
+- Accessible UI
+
+---
+
+# 🛠 Tech Stack
+
+### Frontend
 
 - React
-- Vite
 - TypeScript
+- Vite
 - Tailwind CSS
 - Framer Motion
-- GSAP
-- Lenis
-- Zustand
+- TanStack Router
 - TanStack Query
+- Zustand
 
-Backend
+### Backend
 
 - Supabase
 - PostgreSQL
+- Authentication
 - Storage
-- Edge Functions
 
-Payments
+### Development
 
-- Stripe
-
-Deployment
-
-- Vercel
-
-Emails
-
-- Resend
+- ESLint
+- Prettier
+- Git
+- GitHub
 
 ---
 
-# Repository Structure
+# 📂 Project Structure
 
-docs/
-
-prompts/
-
-database/
-
-api/
-
-design/
-
-security/
-
-testing/
-
-deployment/
-
-.cursor/rules/
-
----
-
-# Documentation
-
-- Product Vision
-- PRD
-- Information Architecture
-- Design System
-- Motion System
-- Backend Architecture
-- Database Design
-- API Specification
-- Security
-- QA
-- AI Engineering Rules
+```text
+src/
+│
+├── assets/
+├── components/
+├── constants/
+├── features/
+├── hooks/
+├── layouts/
+├── lib/
+├── pages/
+├── routes/
+├── store/
+├── types/
+└── utils/
+```
 
 ---
 
-# AI Workflow
+# 🚀 Getting Started
 
-ChatGPT
+Clone the repository
 
-↓
+```bash
+git clone https://github.com/rooha-codes/noir-commerce.git
+```
 
-Documentation
+Install dependencies
 
-↓
+```bash
+npm install
+```
 
-Claude Code
+Run development server
 
-↓
+```bash
+npm run dev
+```
 
-Architecture
+Production build
 
-↓
+```bash
+npm run build
+```
 
-Cursor
+Run lint
 
-↓
-
-Implementation
-
-↓
-
-Lovable
-
-↓
-
-UI Polish
-
-↓
-
-Production
+```bash
+npm run lint
+```
 
 ---
 
-# Status
+# 📱 Pages
 
-Planning Phase
-
-Sprint 0
-
-Repository Setup
+- Home
+- Shop
+- Product Details
+- Collections
+- Journal
+- About
+- Wishlist
+- Cart
+- Checkout
+- Login
+- Signup
+- Forgot Password
+- Reset Password
+- Account
+- Orders
+- 404
 
 ---
 
-Made with ❤️ by Rooha
+# ⚡ Performance
+
+- Route-based code splitting
+- Lazy-loaded pages
+- Optimized image loading
+- Accessible keyboard navigation
+- Responsive layouts
+- Production-ready Vite build
+
+---
+
+# 🔒 Authentication
+
+- Login
+- Signup
+- Password reset
+- Protected account pages
+
+---
+
+# 📦 Future Improvements
+
+- Stripe payments
+- Admin dashboard
+- Product reviews
+- Coupons
+- Email notifications
+- Inventory management
+
+---
+
+# 👩‍💻 Author
+
+**Rooha Hashmi**
+
+- GitHub: https://github.com/rooha-codes
+- LinkedIn: www.linkedin.com/in/rooha-hashmi-44715a419
+
+---
+
+## ⭐ Support
+
+If you found this project useful, consider giving it a ⭐ on GitHub.

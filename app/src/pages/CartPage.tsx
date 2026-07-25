@@ -1,7 +1,8 @@
 import { useState, useCallback } from "react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { Minus, Plus, ShoppingBag, X } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
+
 import { cn } from "@/utils/cn"
 import { RootLayout } from "@/components/layout/RootLayout"
 import { CartDrawer } from "@/components/commerce/CartDrawer"
@@ -18,7 +19,13 @@ function CartItemImage({ src, alt }: { src: string; alt: string }) {
 
   return (
     <div className="relative h-36 w-28 shrink-0 overflow-hidden bg-white/5">
-      {!loaded && <ImageSkeleton className="absolute inset-0" aspectRatio="aspect-[3/4]" />}
+      {!loaded && (
+        <ImageSkeleton
+          className="absolute inset-0"
+          aspectRatio="aspect-[3/4]"
+        />
+      )}
+
       <img
         src={src}
         alt={alt}
@@ -33,8 +40,16 @@ function CartItemImage({ src, alt }: { src: string; alt: string }) {
 }
 
 export function CartPage() {
-  const { items, increase, decrease, removeItem, subtotal, clearCart } =
-    useCart()
+  const navigate = useNavigate()
+
+  const {
+    items,
+    increase,
+    decrease,
+    removeItem,
+    subtotal,
+    clearCart,
+  } = useCart()
 
   const handleRemove = useCallback(
     (id: string) => {
@@ -42,6 +57,10 @@ export function CartPage() {
     },
     [removeItem],
   )
+
+  const handleCheckout = useCallback(() => {
+    navigate(ROUTES.CHECKOUT)
+  }, [navigate])
 
   return (
     <RootLayout navbar="home" showFooter>
@@ -51,6 +70,7 @@ export function CartPage() {
             <p className="mb-3 text-xs uppercase tracking-[0.4em] text-white/40">
               Your Bag
             </p>
+
             <h1 className="text-4xl font-medium tracking-tighter md:text-6xl">
               Shopping Cart
             </h1>
@@ -86,14 +106,20 @@ export function CartPage() {
                       initial={{ opacity: 0, height: 0 }}
                       animate={{ opacity: 1, height: "auto" }}
                       exit={{ opacity: 0, height: 0 }}
-                      transition={{ duration: 0.25, ease: "easeOut" }}
-                      className="flex gap-5 py-6 overflow-hidden"
+                      transition={{
+                        duration: 0.25,
+                        ease: "easeOut",
+                      }}
+                      className="flex gap-5 overflow-hidden py-6"
                     >
                       <Link
                         to={ROUTES.product(item.slug)}
                         className="shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/20"
                       >
-                        <CartItemImage src={item.image} alt={item.name} />
+                        <CartItemImage
+                          src={item.image}
+                          alt={item.name}
+                        />
                       </Link>
 
                       <div className="flex flex-1 flex-col justify-between">
@@ -103,6 +129,7 @@ export function CartPage() {
                               <p className="mb-1 text-xs uppercase tracking-[0.25em] text-white/35">
                                 {item.category}
                               </p>
+
                               <Link
                                 to={ROUTES.product(item.slug)}
                                 className="text-base text-white/90 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/20"
@@ -112,6 +139,7 @@ export function CartPage() {
                             </div>
 
                             <button
+                              type="button"
                               onClick={() => handleRemove(item.id)}
                               aria-label={`Remove ${item.name} from cart`}
                               className="shrink-0 text-white/40 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/20"
@@ -132,16 +160,20 @@ export function CartPage() {
                             aria-label={`Quantity controls for ${item.name}`}
                           >
                             <button
+                              type="button"
                               onClick={() => decrease(item.id)}
                               aria-label={`Decrease quantity of ${item.name}`}
                               className="grid h-8 w-8 place-items-center text-white/60 transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/20"
                             >
                               <Minus size={14} />
                             </button>
+
                             <output className="w-8 text-center text-sm tabular-nums">
                               {item.quantity}
                             </output>
+
                             <button
+                              type="button"
                               onClick={() => increase(item.id)}
                               aria-label={`Increase quantity of ${item.name}`}
                               className="grid h-8 w-8 place-items-center text-white/60 transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/20"
@@ -167,11 +199,16 @@ export function CartPage() {
                 </div>
 
                 <div className="flex w-full max-w-xs flex-col gap-3">
-                  <Button fullWidth disabled>
-                    Checkout — Coming Soon
+                  <Button
+                    type="button"
+                    fullWidth
+                    onClick={handleCheckout}
+                  >
+                    Checkout
                   </Button>
 
                   <button
+                    type="button"
                     onClick={clearCart}
                     className="text-sm text-white/40 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/20"
                   >
